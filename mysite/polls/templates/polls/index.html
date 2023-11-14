@@ -1,0 +1,23 @@
+{%extends 'polls/skeleton.html'%}
+{% load static %}
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+<!-- ran into some errors, style sheet won't work because style.css isn't returning anyting. but everything else for part six is done -->
+{% block content %}
+{% if latest_question_list %}
+
+    <ul>
+    {% for question in latest_question_list %}
+        <!-- <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li> -->
+
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+{% load static %}
+
+<!-- <link rel="stylesheet" href="{% static 'polls/style.css' %}"> -->
+{% endblock content %}
